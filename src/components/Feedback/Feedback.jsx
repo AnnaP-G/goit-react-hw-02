@@ -1,13 +1,13 @@
 import React from "react";
 import css from "./Feedback.module.css";
 
-function Feedback() {
+function Feedback({ feedbackType }) {
   return (
     <div>
       <ul>
-        <li>Good: 0,</li>
-        <li>Neutral: 0</li>
-        <li>Bad: 0</li>
+        <li>Good: {feedbackType.good}</li>
+        <li>Neutral: {feedbackType.neutral}</li>
+        <li>Bad: {feedbackType.bad}</li>
       </ul>
     </div>
   );
