@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Description from "./components/Description/Description";
 import Options from "./components/Options/Options";
 import Feedback from "./components/Feedback/Feedback";
+import Notification from "./components/Notification/Notification";
 import "./App.css";
 
 function App() {
@@ -11,28 +12,36 @@ function App() {
     bad: 0,
   });
 
+  // const [isFeedbackVisible, setisFeedbackVisible] = useState(false);
+
   const updateFeedback = (feedbackType) => {
     setFeedbackCounts({
       ...feedbackCounts,
       [feedbackType]: feedbackCounts[feedbackType] + 1,
     });
     console.log(feedbackCounts);
-    // Тут використовуй сеттер, щоб оновити стан
   };
 
-  // const updateFeedback = (feedbackType) => {
-  //   const lowercaseFeedbackType = feedbackType.toLowerCase();
-  //   setFeedbackCounts((prevState) => ({
-  //     ...prevState,
-  //     [lowercaseFeedbackType]: prevState[lowercaseFeedbackType] + 1,
-  //   }));
-  // };
+  const totalFeedback =
+    feedbackCounts.good + feedbackCounts.neutral + feedbackCounts.bad;
+
+  const positiveResponseRate = `${Math.round(
+    ((feedbackCounts.good + feedbackCounts.neutral) / totalFeedback) * 100
+  )}%`;
 
   return (
     <>
       <Description />
-      <Options updateFeedback={updateFeedback} />
-      <Feedback feedbackType={feedbackCounts} />
+      <Options updateFeedback={updateFeedback} total={totalFeedback} />
+      {totalFeedback !== 0 ? (
+        <Feedback
+          feedbackType={feedbackCounts}
+          total={totalFeedback}
+          positiveRate={positiveResponseRate}
+        />
+      ) : (
+        <Notification />
+      )}
     </>
   );
 }
