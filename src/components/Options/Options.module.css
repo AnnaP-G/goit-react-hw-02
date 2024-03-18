@@ -25,7 +25,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.options button:last-child:hover {
+.options button:nth-child(4):hover {
     background-color: rgb(218, 41, 41);
     border: 2px solid rgb(84, 14, 14);
 }

@@ -20,7 +20,6 @@ function App() {
       ...feedbackCounts,
       [feedbackType]: feedbackCounts[feedbackType] + 1,
     });
-    console.log(feedbackCounts);
   };
 
   useEffect(() => {
