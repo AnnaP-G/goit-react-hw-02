@@ -5,14 +5,15 @@ import Feedback from "./components/Feedback/Feedback";
 import Notification from "./components/Notification/Notification";
 import "./App.css";
 
-function App() {
-  const [feedbackCounts, setFeedbackCounts] = useState({
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  });
+const feedbackObject = { good: 0, neutral: 0, bad: 0 };
 
-  // const [isFeedbackVisible, setisFeedbackVisible] = useState(false);
+function App() {
+  const [feedbackCounts, setFeedbackCounts] = useState(() => {
+    const stringifiedFeedbackCounts = localStorage.getItem("FeedbackValues");
+    const parsedFeedbackCounts =
+      JSON.parse(stringifiedFeedbackCounts) ?? feedbackObject;
+    return parsedFeedbackCounts;
+  });
 
   const updateFeedback = (feedbackType) => {
     setFeedbackCounts({
@@ -22,6 +23,10 @@ function App() {
     console.log(feedbackCounts);
   };
 
+  useEffect(() => {
+    localStorage.setItem("FeedbackValues", JSON.stringify(feedbackCounts));
+  }, [feedbackCounts]);
+
   const totalFeedback =
     feedbackCounts.good + feedbackCounts.neutral + feedbackCounts.bad;
 
@@ -29,10 +34,18 @@ function App() {
     ((feedbackCounts.good + feedbackCounts.neutral) / totalFeedback) * 100
   )}%`;
 
+  const handleResetFeedback = () => {
+    setFeedbackCounts(feedbackObject);
+  };
+
   return (
     <>
       <Description />
-      <Options updateFeedback={updateFeedback} total={totalFeedback} />
+      <Options
+        updateFeedback={updateFeedback}
+        total={totalFeedback}
+        handleResetFeedback={handleResetFeedback}
+      />
       {totalFeedback !== 0 ? (
         <Feedback
           feedbackType={feedbackCounts}

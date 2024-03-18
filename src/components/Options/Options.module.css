@@ -1,0 +1,31 @@
+.options {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.optionBtn {
+    width: 100px;
+    height: 30px;
+    font-size: 15px;
+    color: rgb(39, 39, 4);
+    background-color: rgba(128, 128, 0, 0.317);
+    border: 2px solid rgb(86, 86, 3);
+    border-radius: 10px;
+    padding: 5px;
+    align-items: center;
+    text-align: center;
+    transition: background-color, 0.3s ease-in-out;
+}
+
+.optionBtn:hover {
+    background-color: rgb(129, 129, 7);;
+    color: rgb(224, 236, 159);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.options button:last-child:hover {
+    background-color: rgb(218, 41, 41);
+    border: 2px solid rgb(84, 14, 14);
+}

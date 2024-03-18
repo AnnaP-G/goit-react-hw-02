@@ -1,0 +1,21 @@
+.feedback {
+    display: block;
+    width: 400px;
+    margin: 0 auto;    
+}
+
+.feedbackList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.feedbackItem {
+    font-size: 18px;
+    color: rgb(86, 86, 3);
+}
+
+.feedbackItem:nth-child(4),
+.feedbackItem:nth-child(5) {
+    font-weight: bold;
+}

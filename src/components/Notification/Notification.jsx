@@ -1,9 +1,8 @@
-import React from "react";
-
+import css from './Notification.module.css'
 function Notification() {
   return (
-    <div>
-      <p>No feedback yet</p>
+    <div className={css.notificstion}>
+      <p className={css.notificationText}>No feedback yet</p>
     </div>
   );
 }
